@@ -103,6 +103,15 @@
   }
   .card-github:hover { color: var(--text); transform: scale(1.1); }
   .card-github svg { display: block; }
+  .card-mobile {
+    color: var(--text-dim);
+    display: inline-flex;
+    align-items: center;
+    margin-left: 0.5rem;
+    transition: color 0.15s ease, transform 0.15s ease;
+  }
+  .card-mobile:hover { color: var(--text); transform: scale(1.1); }
+  .card-mobile svg { display: block; }
   .card-desc {
     color: var(--text-dim);
     font-size: 0.9rem;
@@ -246,10 +255,13 @@ function makeCard(p) {
     ? `<a href="${p.github_repo}" target="_blank" rel="noopener" class="card-github" title="Veure repositori a GitHub"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="GitHub"><path d="M12 .3a12 12 0 0 0-3.8 23.4c.6.1.8-.3.8-.6v-2c-3.3.7-4-1.6-4-1.6-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.2.1 1.8 1.2 1.8 1.2 1.1 1.8 2.8 1.3 3.5 1 .1-.8.4-1.3.8-1.6-2.7-.3-5.5-1.3-5.5-6 0-1.3.5-2.4 1.2-3.2-.1-.3-.5-1.5.1-3.2 0 0 1-.3 3.4 1.2a11.7 11.7 0 0 1 6 0c2.3-1.5 3.3-1.2 3.3-1.2.7 1.7.2 2.9.1 3.2.8.8 1.2 1.9 1.2 3.2 0 4.6-2.8 5.6-5.5 6 .4.4.8 1.1.8 2.2v3.3c0 .3.2.7.8.6A12 12 0 0 0 12 .3"/></svg></a>`
     : '';
   
+  const mobileProjects = ["cooltra_calendar", "concerts", "ligabue"];
+  const mobileIcon = mobileProjects.includes(p.id) ? `<span class="card-mobile" title="Optimitzat per mòbils"><svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" aria-label="Mobile"><path d="M17 1H7c-1.1 0-2 .9-2 2v18c0 1.1.9 2 2 2h10c1.1 0 2-.9 2-2V3c0-1.1-.9-2-2-2zM7 4h10v16H7V4z"/></svg></span>` : '';
+  
   card.innerHTML = `
     <div class="card-header">
       <span class="card-title">${p.name}</span>
-      ${githubIcon}
+      ${githubIcon}${mobileIcon}
     </div>
     <div class="card-desc">${p.description}</div>
     <a href="${p.url}" target="_blank" rel="noopener" class="btn">Obrir</a>
